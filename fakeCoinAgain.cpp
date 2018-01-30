@@ -5,17 +5,17 @@ using namespace std;
 int findCoin(int coin[], int coinSize);
 int main(){
 
-int coin[30];
+int coin[2];
 
-for (int i=0; i<30; i++){
+for (int i=0; i<2; i++){
 	coin[i] = 1;
 }
 
-coin[20] = 2;
+coin[1] = 2;
 
 int coinSize = sizeof(coin)/sizeof(int);
 
-findCoin(coin, coinSize);
+cout << findCoin(coin, coinSize) << endl;
 
 return 0;
 }
@@ -35,17 +35,17 @@ if(coinSize % 3 == 0){
 	int sumB = 0;
 	int sumC = 0;
 	for(int i=0; i<coinSize; i++){
-		if(coinSize < coinSize/3){
+		if(i < coinSize/3){
 			a[i] = coin[i];
-			sumA += a[i];
+			sumA += coin [i];
 		}
-		if(coinSize >= coinSize/3 && coinSize < (coinSize/3 *2)){
-			b[i] = coin[i];
-			sumB += b[i];
+		if(i >= coinSize/3 && i < (coinSize/3 *2)){
+			b[i-(coinSize/3)] = coin[i];
+			sumB += coin[i];
 		}
-		if(coinSize >= (coinSize/3 *2)){
-			c[i] = coin[i];
-			sumC += c[i];
+		if(i >= (coinSize/3 *2)){
+			c[i-(coinSize/3*2)] = coin[i];
+			sumC += coin[i];
 		}
 }
 if(sumA > sumB && sumA > sumC)
@@ -66,22 +66,22 @@ if(coinSize % 3 == 1){
 	int sumB = 0;
 	int sumC = 0;
 	for(int i=0; i<coinSize; i++){
-		if(coinSize < coinSize/3){
+		if(i < coinSize/3){
 			a[i] = coin[i];
-			sumA += a[i];
+			sumA += coin[i];
 		}
-		if(coinSize >= coinSize/3 && coinSize < (coinSize/3 *2)){
-			b[i] = coin[i];
-			sumB += b[i];
+		if(i >= coinSize/3 && i < (coinSize/3 *2)){
+			b[i-(coinSize/3)] = coin[i];
+			sumB += coin[i];
 		}
-		if(coinSize >= (coinSize/3 *2)){
-			c[i] = coin[i];
-			sumC += c[i];
+		if(i >= (coinSize/3 *2)){
+			c[i-(coinSize/3*2)] = coin[i];
+			sumC += coin[i];
 		}
 }
 if(sumA > sumB)
 	findCoin(a, (coinSize/3));
-if(sumB > sumA)
+else if(sumB > sumA)
 	findCoin(b, (coinSize/3));
 else
 	findCoin(c, (coinSize/3+1));
@@ -96,28 +96,29 @@ if(coinSize % 3 == 2){
 	int sumB = 0;
 	int sumC = 0;
 	for(int i=0; i<coinSize; i++){
-		if(coinSize < coinSize/3 + 1){
+		if(i < coinSize/3 + 1){
 			a[i] = coin[i];
-			sumA += a[i];
+			sumA += coin[i];
 		}
-		if(coinSize >= coinSize/3 + 1 && coinSize < (coinSize/3 *2+2)){
-			b[i] = coin[i];
-			sumB += b[i];
+		if(i >= coinSize/3 + 1 && i < (coinSize/3 *2+2)){
+			b[i-(coinSize/3+1)] = coin[i];
+			sumB += coin[i];
 		}
-		if(coinSize >= (coinSize/3 *2 + 2)){
-			c[i] = coin[i];
-			sumC += c[i];
+		if(i >= (coinSize/3 *2 + 2)){
+			c[i-(coinSize/3+2)] = coin[i];
+			sumC += coin[i];
 		}
 }
 if(sumA > sumB)
 	findCoin(a, (coinSize/3+1));
-if(sumB > sumA)
+else if(sumB > sumA)
 	findCoin(b, (coinSize/3+1));
 else
 	findCoin(c, (coinSize/3));
 
 }
 
-
+else
+return -1;
 
 }
