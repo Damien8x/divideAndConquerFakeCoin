@@ -1,13 +1,15 @@
 #include <iostream>
 
 using namespace std;
-
+int weighCoins(int coin[], int low, int high);
 int findCoin(int coin[], int low, int high);
 int main(){
 
-int coin[100];
+int n = 100;
+
+int coin[n];
 int low = 0;
-int high = 99;
+int high = (n-1);
 
 for(int i= low; i <= high; i++){
 	coin[i] = 1;
@@ -48,12 +50,10 @@ int highMid = low + (thirdsOfDifference * 2);
 int sumLow = 0;
 int sumMid = 0;
 	
-	for(int i = low; i<= high; i++){
-		if(i < lowMid)
-			sumLow += coin[i];
-		else if(i >=lowMid && i < highMid)
-			sumMid += coin[i];
-		}
+
+	sumLow = weighCoins(coin, low, lowMid);
+	sumMid = weighCoins(coin, lowMid, highMid);
+
 	if(sumLow == sumMid)
 		findCoin(coin, highMid, high);
 	else if(sumLow > sumMid)
@@ -61,5 +61,15 @@ int sumMid = 0;
 	else
 		findCoin(coin, lowMid, highMid-1);
 }
+
+}
+
+int weighCoins(int coin[], int low, int high){
+	int sum = 0;
+	for(int i=low; i<high; i++){
+	sum+= coin[i];
+}
+	return sum;
+
 
 }
